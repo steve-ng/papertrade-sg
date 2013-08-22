@@ -1,0 +1,30 @@
+
+<% if false %>			
+<%= form_tag login_path, class: "form-horizontal" do %>
+<fieldset>
+	<p>
+		<legend>Please sign in</legend>
+	</p>
+	<div class=" input-append" title="Username"> 
+		<p>
+			<%= label_tag :name, 'Username' %>
+			<%= text_field_tag :name %> 
+		</p>
+	</div>
+	<div class=" input-append" title="Password"> 
+		<p>
+			<%= label_tag :password, 'Password' %>
+			<%= password_field_tag :password %> 
+		</p>
+	</div></br>
+	<p>
+		<%= submit_tag "Login", class: "btn" %>
+	</p>	 	
+</fieldset>
+<% end %>	
+<p>
+	<%= link_to "Sign up", new_user_path %><br />
+
+</p>
+
+<% end %>

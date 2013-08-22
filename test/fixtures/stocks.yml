@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  \: MyString
+  counter_name: MyString
+  price: 9.99
+
+two:
+  \: MyString
+  counter_name: MyString
+  price: 9.99

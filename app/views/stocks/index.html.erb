@@ -1,0 +1,68 @@
+<%= form_tag(stocks_search_path, :method => "get") do %>
+<%= label_tag :stock_name, 'Stock to find (Enter name or symbol):' %>
+<div class=" input-append "> 
+	<%= text_field_tag :stock_name, params[:stock_name] %> 
+	<%= submit_tag "Search", class: "btn" %>
+	<% end %>
+</div> 
+
+<% if @search_result  != nil %>
+
+<div class="row-fluid">
+
+	<div class="box " onTablet="span4" onDesktop="span4">
+
+		<div class="box-header">
+			<h2>
+				Search Result </h2>
+			</div>
+			<div class="box-content">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Symbol</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @search_result.each do |key, value| %>
+						<tr>
+							<td >
+								<%= link_to value, "/stocks/search?utf8=✓&stock_name="+key+"&commit=Search"%> 
+							</td>
+							<td><%= link_to key, "/stocks/search?utf8=✓&stock_name="+key+"&commit=Search"%> </td>
+						</tr>
+						<% end %>
+
+					</tbody>
+				</table>  
+			</div>
+		</div>
+
+
+	</div>
+
+<% end %> 
+</br>
+
+</br>
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<!-- 
+<div class=" input-append "> 
+  <input  class="span10" id="appendedInputButton" size="55" type="text" value="Key in stock's name or symbol to search">
+  <%= button_to "Add to portfolio", {controller: "stocks", action: "show", id: 1},{ method: :get, class: "btn" }  %>
+</div>  -->

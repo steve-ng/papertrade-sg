@@ -1,0 +1,179 @@
+
+<div class ="row-fluid">
+  <div class="box span12">
+    <div class="box-header">
+      <h2><i class="halflings-icon align-justify"></i><span class="break"></span>Stocks owned</h2>
+      <div class="box-icon">
+        <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+      </div>
+    </div>
+    <div class="box-content">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Symbol</th>
+            <th>Quantity</th>
+            <th>Buy Price (Avg)</th>
+            <th>Current Bid</th>
+            <th>Current Ask</th>    
+            <th>Action</th
+          </tr>
+        </thead>   
+        <tbody>
+          <% @stock_owned.each_index do |i| %>
+          <tr>
+            <td><%= @stock_owned[i].stock.counter_name %></td>
+            <td><%= @stock_owned[i].stock.symbol %> </td>
+            <td><%= @stock_owned[i].quantity %> </td>
+            <td><%= @stock_owned[i].buy_price %> </td>
+            <td><%= @current_bid_price_array[i] %> &nbsp;  
+              
+            </td>
+            <td> <%= @current_ask_price_array[i] %> 
+              
+            </td>
+             <td>
+              <a class="btn btn-danger open-sell-dialog" data-symbol=<%=@stock_owned[i].stock.symbol %> data-qty=<%= @stock_owned[i].quantity %> data-price=<%=@current_ask_price_array[i]%> data-name=<%= @stock_owned[i].stock.counter_name %> data-toggle="modal" href="#purchaseModal">
+                <i class="halflings-icon trash halflings-icon"></i> 
+                Sell
+              </a>
+              <a class="btn btn-success open-buy-dialog" data-symbol=<%=@stock_owned[i].stock.symbol %> data-price=<%= @current_bid_price_array[i]%> data-name=<%= @stock_owned[i].stock.counter_name %> data-toggle="modal" href="#purchaseModal" >
+                <i class="halflings-icon shopping-cart halflings-icon" alt='buy'></i> Buy               
+              </a>
+             </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>      
+    </div>
+  </div><!--/span-->
+</div><!--/row-->
+
+
+
+<div class ="row-fluid">
+  <div class="box span12">
+    <div class="box-header">
+      <h2><i class="halflings-icon align-justify"></i><span class="break"></span>
+        Past transactions</h2>
+        <div class="box-icon">
+          <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+        </div>
+      </div>
+      <div class="box-content">
+        <table class="table table-striped bootstrap-datatable datatable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Symbol</th>
+              <th>Buy Price</th>
+              <th>Sell Price</th>              
+              <th>Transaction Date</th>
+              <th>Qty (Lots)</th>                                
+            </tr>
+          </thead>   
+          <tbody>
+            <% @transaction.each do |transaction| %>
+            <tr>
+              <td><%= transaction.stock.counter_name %></td>
+              <td><%= transaction.stock.symbol %></td>
+              <td><%= transaction.buy_price %> </td>
+              <td><%= transaction.sell_price %> </td>
+              <td><%= transaction.created_at %> </td>
+              <td><%= transaction.quantity %> </td>
+              
+            </tr>
+            <% end %>
+
+          </tbody>
+        </table>      
+      </div>
+    </div><!--/span-->
+  </div><!--/row-->
+
+
+
+  <!-- Modal -->
+  <div id="purchaseModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="modal_header_text">Buy Starhub</h3>
+    </div>
+    <div class="modal-body">
+
+
+      <%= form_tag buy_orders_path, id: 'sale_form' do %>
+      <fieldset>
+        <%= hidden_field_tag 'stock_symbol', nil, id: "stock_symbol_hidden"%>
+        <%= hidden_field_tag 'stock_price', nil, id: "stock_price_hidden" %>
+        <div class="control-group">
+          <%= label_tag '',nil, {class: "control-label", id: "price_info"} %>
+          <div class="controls">
+          </div>
+        </div>
+        <div class ="control-group">
+          <%= label_tag 'stock_quantity', 'Quantity', {class: "control-label" }%>
+          <div class="controls">
+            <div class="input-append">
+            <%= text_field_tag 'stock_quantity', params[:stock_price] %> <span class="add-on ">lots</span>
+          </div>
+            <span class="help-block" id="help_text"></span>
+          </div>
+        </div>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <%= submit_tag " ",class: "btn btn-primary", id: "action" %>
+      </fieldset>
+      <% end %>
+    </div> 
+
+
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+$(document).on("click", ".open-buy-dialog", function () {
+
+  console.log("detected clicks!");
+
+  var stock_name = $(this).data('name');
+  var stock_symbol = $(this).data('symbol')
+  var price = $(this).data('price');
+
+  document.getElementById("modal_header_text").innerHTML="Buy "+stock_name;
+  document.getElementById("price_info").innerHTML="Current bid price "+price
+  document.getElementById("action").value="Buy stock"
+
+  document.getElementById("stock_symbol_hidden").value = stock_symbol;
+  document.getElementById("stock_price_hidden").value = price; 
+
+  document.getElementById("sale_form").action = '/orders/buy';
+
+});
+
+$(document).on("click", ".open-sell-dialog", function () {
+
+  var stock_name = $(this).data('name');
+  var price = $(this).data('price');
+  var qty = $(this).data('qty');
+
+  console.log("detected clicks!");
+
+  document.getElementById("modal_header_text").innerHTML="Sell "+stock_name;
+  document.getElementById("price_info").innerHTML="Current ask price "+price
+  document.getElementById("help_text").innerHTML="You own "+qty+ " lots."
+  document.getElementById("action").value="Sell stock"
+
+  document.getElementById("stock_symbol_hidden").value = stock_symbol;
+  document.getElementById("stock_price_hidden").value = price; 
+
+  document.getElementById("sale_form").action = '/orders/sell';
+
+});
+</script>
+
+  <!--      var myBookId = $(this).data('xx');
+  $(".modal-body #bookId").val( myBookId ); -->

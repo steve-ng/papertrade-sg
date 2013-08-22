@@ -1,0 +1,95 @@
+
+<h1> &nbsp; Welcome </h1> 
+
+&nbsp; &nbsp; To start, please sign in with facebook </br> </br>
+<!--  <%= link_to " Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+ -->
+
+<div id="fb-root"></div>
+<script>
+  //Loading the JS SDK Asynchronously
+  window.fbAsyncInit = function() {
+    FB.init({ appId: '149418761930204', 
+      status: true, 
+      cookie: true,
+      xfbml: true,
+      oauth: true
+    });
+
+    function updateButton(response) {
+
+      if (response.authResponse) {
+        //user is already logged in and connected
+         console.log(response.authResponse.accessToken);
+
+        var userInfo = document.getElementById('user-info');
+        FB.api('/me', function(response) {
+          userInfo.innerHTML = '<img src="https://graph.facebook.com/'
+          + response.id + '/picture">' + response.name;
+
+          //Visibility Control
+          document.getElementById('auth-loggedout').style.display = 'none';
+          document.getElementById('auth-loggedin').style.display = 'block';
+        });
+        
+        //Adding a click listener to Logout Link
+        document.getElementById('auth-logoutlink').addEventListener('click', function() {
+        FB.logout(function(response) {
+          var userInfo = document.getElementById('user-info');
+          userInfo.innerHTML="";
+        });
+      });
+      } else {
+        // user has not auth'd your app, or is not logged into Facebook
+        document.getElementById('auth-loggedout').style.display = 'block';
+        document.getElementById('auth-loggedin').style.display = 'none';
+
+        document.getElementById('auth-loginlink').addEventListener('click', function(){
+          FB.login(function(response) {
+            if (response.authResponse) {
+              FB.api('/me', function(response) {
+                var userInfo = document.getElementById('user-info');
+                userInfo.innerHTML = '<img src="https://graph.facebook.com/' 
+                + response.id + '/picture" style="margin-right:5px"/>' 
+                + response.name;
+              });
+
+              //window.location = '/auth/facebook/callback';
+              	var xx =  '/auth/facebook/callback?' + $.param({ signed_request: response.authResponse.signedRequest });
+              	console.log (xx);
+
+               location.href = '/auth/facebook/callback?' + $.param({ signed_request: response.authResponse.signedRequest })
+               //window.location = '/auth/facebook/callback?';
+               console.log (xx);
+
+            } else {
+              //user cancelled login or did not grant authorization
+            }
+          }, {scope:'email,publish_stream,publish_actions'});    
+        });
+      }
+    }
+
+    // run once with current status and whenever the status changes
+    FB.getLoginStatus(updateButton);
+    FB.Event.subscribe('auth.statusChange', updateButton);    
+  };
+
+  (function() {
+    var e = document.createElement('script'); e.async = true;
+    e.src = document.location.protocol 
+    + '//connect.facebook.net/en_US/all.js';
+    document.getElementById('fb-root').appendChild(e);
+  }());
+
+</script>
+
+<div id="auth-status">
+  <div id="auth-loggedout">
+    <a href="#" id="auth-loginlink">Login</a>
+  </div>
+  <div id="auth-loggedin" style="display:none">
+    <div id="user-info">Loading...</div><br/>
+    <a href="#" id="auth-logoutlink">Logout</a>
+  </div>
+</div>

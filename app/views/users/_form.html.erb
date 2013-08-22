@@ -1,0 +1,46 @@
+<%= form_for @user,:html => {:class => 'form-horizontal'} do |f| %>
+<% if @user.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+=
+<fieldset>
+  <p>
+  <legend>Enter New User Details </legend>
+</p>
+  <div class=" input-append" title="Username"> 
+    <p>
+      <%= f.label :name, 'Username' %>
+      <%= f.text_field :name %> 
+    </p>
+  </div>
+  <div class=" input-append" title="Password"> 
+    <p>
+      <%= f.label :password, 'Password' %>
+      <%= f.password_field :password %> 
+    </p>
+  </div>
+  <div class=" input-append" title="Password_Confirm"> 
+    <p>
+      <%= f.label :password_confirmation, 'Password_Confirm' %>
+      <%= f.password_field :password_confirmation  %> 
+    </p>
+  </div>
+  <div class="actions">
+    <p>
+      <%= f.submit "Sign up!", class: "btn" %>
+  </p>
+  </div>
+  <% if notice %>
+<p class="alert alert-error"><%= notice %></p>
+<% end %>
+
+</fieldset>
+<% end %>

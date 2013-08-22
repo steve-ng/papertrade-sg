@@ -1,0 +1,235 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Counter name:</strong>
+  <%= @stock.counter_name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @stock.price %>
+</p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>
+-->
+<%= javascript_include_tag "highstock/highstock" %>
+<%= javascript_include_tag "highstock/modules/exporting" %>
+
+<%= form_tag(stocks_search_path, :method => "get") do %>
+<%= label_tag :stock_name, 'Stock to find (Enter name or symbol):' %>
+<div class=" input-append "> 
+	<%= text_field_tag :stock_name, params[:stock_name] %> 
+	<%= submit_tag "Search", class: "btn" %>
+	<% end %>
+</div> 
+
+<div class="row-fluid">
+
+	<div class="box span8" onTablet="span12" onDesktop="span8">
+		<div class="box-header">
+			<h2><i class="halflings-icon list"></i><span class="break"></span>Price chart</h2>
+			<div class="box-icon">
+				<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+				<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+			</div>
+		</div>
+		<div class="box-content">
+			
+			<div id="container"  style="height: 500px; min-width: 500px;">
+
+			</div>
+
+		</div>
+	</div><!--/span-->
+
+	<div class="span4">
+		<div class="row-fluid">
+
+			<div class="box " onTablet="span12" onDesktop="span12">
+				
+				<div class="box-header">
+					<h2><i class="halflings-icon check"></i><span class="break"></span>
+						Stock Info </h2>
+					</div>
+					<div class="box-content">
+						<table class="table table-striped">
+							<tbody>
+								<tr>
+									<td>Previous close</td>
+									<td class="center"><%= @previous_close %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
+
+									<td>Open</td>
+									<td class="center">xxxx </td>
+
+								</tr>
+
+								<tr>
+									<td class="center">Volume</td>
+									<td class="center">xxxx</td>    
+
+									<td class="center">Day's range</td>
+									<td class="center">xxxx</td>                       
+								</tr>
+
+								<tr>
+									<td>Bid</td>
+									<td class="center">xxx</td>
+
+									<td>Ask</td>
+									<td class="center">xx</td>              
+								</tr>
+
+							</tbody>
+						</table>  
+					</div>
+				</div>
+
+
+			</div>
+
+			<div class="row-fluid">
+
+				<div class="box " onTablet="span12" onDesktop="span12">
+					<div class="box-header">
+						<h2><i class="halflings-icon check"></i><span class="break"></span>
+							Headline News related to this stock</h2>
+						</div>
+						<div class="box-content">
+							<div class="todo">
+								<ul class="todo-list">
+									<li>
+										Windows Phone 8 App <span class="label label-important">today</span>
+										<span class="todo-actions">
+											<a href="#"><i class="halflings-icon ok"></i></a>
+											<a href="#" class="todo-remove"><i class="halflings-icon remove"></i></a>
+										</span>
+									</li>
+									<li>New frontend layout <span class="label label-important">today</span>
+										<span class="todo-actions">
+											<a href="#"><i class="halflings-icon ok"></i></a>
+											<a href="#" class="todo-remove"><i class="halflings-icon remove"></i></a>
+										</span>
+									</li>
+									<li>Hire developers <span class="label label-warning">tommorow</span>
+										<span class="todo-actions">
+											<a href="#"><i class="halflings-icon ok"></i></a>
+											<a href="#" class="todo-remove"><i class="halflings-icon remove"></i></a>
+										</span>
+									</li>
+									<li>Windows Phone 8 App <span class="label label-warning">tommorow</span>
+										<span class="todo-actions">
+											<a href="#"><i class="halflings-icon ok"></i></a>
+											<a href="#" class="todo-remove"><i class="halflings-icon remove"></i></a>
+										</span>
+									</li>
+									<li>New frontend layout <span class="label label-success">this week</span>
+										<span class="todo-actions">
+											<a href="#"><i class="halflings-icon ok"></i></a>
+											<a href="#" class="todo-remove"><i class="halflings-icon remove"></i></a>
+										</span>
+									</li>
+									<li><a href="#">Click here for more news provided by yahoo </a></span>
+										<span class="todo-actions">
+
+										</span>
+									</li>
+								</ul>
+							</div>	
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div> <!-- content row fluid -->
+
+		<div class ="row-fluid">
+			<div class = 'span4'>
+				<%= form_tag(stocks_search_path, :method => "get") do %>
+				<%= label_tag :stock_name, 'Buy Quantity' %>
+				<div class=" input-append "> 
+					<%= text_field_tag :stock_name, params[:stock_name] %> 
+					<span class="add-on">,000 lots </span>
+					<%= submit_tag "Buy", class: "btn" %>
+					<% end %>
+				</div>
+			</div>
+
+			<div class = 'span4'>
+				<%= form_tag(stocks_search_path, :method => "get") do %>
+				<%= label_tag :stock_name, 'Sell Quantity lol, you own xx lots' %>
+				<div class=" input-append "> 
+					<%= text_field_tag :stock_name, params[:stock_name] %> 
+					<span class="add-on">,000 lots </span>
+					<%= submit_tag "Sell", class: "btn" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+		Total Price: 
+		<script type="text/javascript">
+		$(function() {
+
+			var data = <%= @historical_price %>
+
+			console.log("data =="+data)
+			// var data = $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function(info) {
+			// 		return info;
+
+			// });
+
+			$('#container').highcharts('StockChart', {
+				rangeSelector : {
+					selected : 1
+				},
+
+				title : {
+					text : 'Starhub 14'
+				},
+
+				series : [{
+					name : 'Starhub Stock Price',
+					data : data,
+					marker : {
+						enabled : true,
+						radius : 3
+					},
+					shadow : true,
+					tooltip : {
+						valueDecimals : 2
+					}
+				}]
+			});
+
+	// 		$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function(data) {
+
+	// 	// Create the chart
+	// 	$('#container').highcharts('StockChart', {
+	// 		rangeSelector : {
+	// 			selected : 1
+	// 		},
+
+	// 		title : {
+	// 			text : 'Starhub'
+	// 		},
+
+	// 		series : [{
+	// 			name : 'Starhub Stock Price',
+	// 			data : data,
+	// 			marker : {
+	// 				enabled : true,
+	// 				radius : 3
+	// 			},
+	// 			shadow : true,
+	// 			tooltip : {
+	// 				valueDecimals : 2
+	// 			}
+	// 		}]
+	// 	});
+	// });
+
+
+	});
+
+		</script>
