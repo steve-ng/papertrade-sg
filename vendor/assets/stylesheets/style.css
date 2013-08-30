@@ -12,25 +12,25 @@
 /* Import Section
 =================================================================== */
 @import "jquery-ui-1.8.21.custom.css";  /* jQuery User Interface Framework Styles */
-@import "fullcalendar.css";       /* Calendars Styles */
-@import "chosen.css";         /* Select Boxes Styles */  
-@import "uniform.default.css";      /* Uniform Styles */
-@import "jquery.cleditor.css";      /* Text Editor Styles. */  
-@import "jquery.noty.css";        /* Noty Notifications Style */
-@import "noty_theme_default.css";   /* Noty Notifications Style */
-@import "elfinder.min.css";       /* File Manager Style */
-@import "elfinder.theme.css";     /* File Manager Style */
-@import "jquery.iphone.toggle.css";   /* Styles for iPhone */
-@import "uploadify.css";        /* Uploadify Styles */
-@import "jquery.gritter.css";     /* Growl Like Notifications Styles */
-@import "font-awesome.css";       /* Font Awesome Styles */
-@import "font-awesome-ie7.css";     /* Font Awesome Styles */
-@import "glyphicons.css";       /* Glyphicons Font */
-@import "halflings.css";        /* Glyphicons Halflings Font */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);  /* Google Web Fonts */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400);  /* Google Web Fonts */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:600);  /* Google Web Fonts */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);  /* Google Web Fonts */
+@import "fullcalendar.css";				/* Calendars Styles */
+@import "chosen.css";					/* Select Boxes Styles */  
+@import "uniform.default.css";			/* Uniform Styles */
+@import "jquery.cleditor.css";			/* Text Editor Styles. */  
+@import "jquery.noty.css";				/* Noty Notifications Style */
+@import "noty_theme_default.css";		/* Noty Notifications Style */
+@import "elfinder.min.css";				/* File Manager Style */
+@import "elfinder.theme.css";			/* File Manager Style */
+@import "jquery.iphone.toggle.css";		/* Styles for iPhone */
+@import "uploadify.css";				/* Uploadify Styles */
+@import "jquery.gritter.css";			/* Growl Like Notifications Styles */
+@import "font-awesome.css";				/* Font Awesome Styles */
+@import "font-awesome-ie7.css";			/* Font Awesome Styles */
+@import "glyphicons.css";				/* Glyphicons Font */
+@import "halflings.css";				/* Glyphicons Halflings Font */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);	/* Google Web Fonts */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400);	/* Google Web Fonts */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:600);	/* Google Web Fonts */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);	/* Google Web Fonts */
 /* Main Colors
 =================================================================== */
 .blue {
@@ -1191,7 +1191,7 @@ ul.chat li.right .message .arrow {
   position: absolute;
   top: 5px;
   right: -20px;
-  background: url(/assets/chat-right.png) no-repeat 0px 0px;
+  background: url(../img/chat-right.png) no-repeat 0px 0px;
 }
 ul.chat li.left img.avatar {
   float: left;
@@ -1209,7 +1209,7 @@ ul.chat li.left .message .arrow {
   position: absolute;
   top: 5px;
   left: -20px;
-  background: url(/assets/chat-left.png) no-repeat 0px 0px;
+  background: url(../img/chat-left.png) no-repeat 0px 0px;
 }
 ul.chat li {
   list-style: none;
@@ -1857,12 +1857,12 @@ div.uploader {
   height: 16px;
   width: 16px;
   position: absolute !important;
-  background: url("/assets/slider_r8.png") no-repeat center center scroll #f4f4f4 !important;
-  background: url("/assets/slider_r8.png") no-repeat center center scroll, -webkit-linear-gradient(top, #f4f4f4 0%, #f7f7f7 100%) !important;
-  background: url("/assets/slider_r8.png") no-repeat center center scroll, -moz-linear-gradient(top, #f4f4f4 0%, #f7f7f7 100%) !important;
-  background: url("/assets/slider_r8.png") no-repeat center center scroll, -o-linear-gradient(top, #f4f4f4 0%, #f7f7f7 100%) !important;
-  background: url("/assets/slider_r8.png") no-repeat center center scroll, -ms-linear-gradient(top, #f4f4f4 0%, #f7f7f7 100%) !important;
-  background: url("/assets/slider_r8.png") no-repeat center center scroll, linear-gradient(top, #f4f4f4 0%, #f7f7f7 100%) !important;
+  background: url("../img/slider_r8.png") no-repeat center center scroll #f4f4f4 !important;
+  background: url("../img/slider_r8.png") no-repeat center center scroll, -webkit-linear-gradient(top, #f4f4f4 0%, #f7f7f7 100%) !important;
+  background: url("../img/slider_r8.png") no-repeat center center scroll, -moz-linear-gradient(top, #f4f4f4 0%, #f7f7f7 100%) !important;
+  background: url("../img/slider_r8.png") no-repeat center center scroll, -o-linear-gradient(top, #f4f4f4 0%, #f7f7f7 100%) !important;
+  background: url("../img/slider_r8.png") no-repeat center center scroll, -ms-linear-gradient(top, #f4f4f4 0%, #f7f7f7 100%) !important;
+  background: url("../img/slider_r8.png") no-repeat center center scroll, linear-gradient(top, #f4f4f4 0%, #f7f7f7 100%) !important;
   margin-top: 2px !important;
   outline: none !important;
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff;
@@ -2276,7 +2276,7 @@ footer {
 /* Circle stats
 =================================================================== */
 .tempStats {
-  background: url(/assets/grid_grey.jpg) repeat;
+  background: url(../img/grid_grey.jpg) repeat;
   text-align: center;
 }
 .tempStatBox {
@@ -2499,7 +2499,7 @@ footer {
 }
 /* Typography - Blockquote
 =================================================================== */blockquote {
-  background: url(/assets/quote.png) no-repeat 0px 10px;
+  background: url(../img/quote.png) no-repeat 0px 10px;
   font-style: italic;
   border-left: none;
   padding: 0 0 0 30px;
@@ -2699,7 +2699,7 @@ ul.messagesList li span.date {
   width: auto;
   height: 100%;
   margin: 20px auto;
-  background: url(/assets/timeline-bg.png) repeat-y center top;
+  background: url(../img/timeline-bg.png) repeat-y center top;
 }
 .timeslot {
   display: inline-block;
@@ -2743,7 +2743,7 @@ ul.messagesList li span.date {
   right: 0px;
   height: 20px;
   width: 20px;
-  background: url(/assets/timeline-left-arrow.png) no-repeat;
+  background: url(../img/timeline-left-arrow.png) no-repeat;
 }
 .timeslot .icon {
   position: absolute;
@@ -2786,7 +2786,7 @@ ul.messagesList li span.date {
   left: 0px;
   height: 20px;
   width: 20px;
-  background: url(/assets/timeline-right-arrow.png) no-repeat;
+  background: url(../img/timeline-right-arrow.png) no-repeat;
 }
 .timeslot.alt .time {
   top: 1px;

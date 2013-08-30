@@ -1,124 +1,125 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-	<!-- start: Meta -->
-	<meta charset="utf-8">
-	<title>Papertrade . SG - Learn stock trading at 0 risk!</title>
-	<%= yield :head %>
-	<!-- start: Mobile Specific -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- end: Mobile Specific -->
+	<head>
+		<!-- start: Meta -->
+		<meta charset="utf-8">
 
-	<!-- start: Favicon and Touch Icons -->
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="ico/favicon.png">
-	<!-- end: Favicon and Touch Icons -->
-
-	<%= include_gon %>
-	<%= stylesheet_link_tag "bootstrap" %>
-	<%= stylesheet_link_tag "bootstrap-responsive" %>
-	<%= stylesheet_link_tag "style" %>
-	<%= stylesheet_link_tag "style-responsive" %>
-	<%= stylesheet_link_tag "retina" %>
-
-	<!-- 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %> -->	
-	<!-- <%= javascript_include_tag "application", "data-turbolinks-track" => true %>  -->
-	<%= csrf_meta_tags %>
-	<%= javascript_include_tag :application, controller_name %>
-
-
-</head>
-
-<body>
-
-
-	<!-- start: Header -->
-	<div class="navbar">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<a class="brand" href=<%= root_path %>><span>PaperTrade . SG</span></a>
-
-				<!-- start: Header Menu -->
-				<div class="nav-no-collapse header-nav">
-					<ul class="nav pull-right">
-						<!-- start: User Dropdown -->
-						<li class="dropdown">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i>
-								<% if @user %>
-								<%= @user.name %>
-								<% else %>
-								<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-								<% end %>
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="halflings-icon white user"></i> Profile</a></li>
-								
-								<% if session[:user_id] %>
-								 <%= link_to '<i class="halflings-icon white off"></i> Logout '.html_safe, signout_path, id: "sign_out" %><!-- 
-								 <li><%= link_to '<i class="halflings-icon white off"></i> Logout '.html_safe,signout_path, method: :delete %> </li>  -->
-								 <% end %>
-
-								</ul>
-							</li>
-							<!-- end: User Dropdown -->
-						</ul>
-					</div>
-					<!-- end: Header Menu -->
-				</div>
-			</div>
-		</div>
+		<title>Papertrade . SG - Learn stock trading at 0
+		risk!</title><%= yield :head %><!-- start: Mobile Specific -->
+		<meta content="width=device-width, initial-scale=1" name="viewport">
+		<!-- end: Mobile Specific -->
+		<!-- start: Favicon and Touch Icons -->
+		<link href="ico/apple-touch-icon-144-precomposed.png" rel=
+		"apple-touch-icon-precomposed" sizes="144x144">
+		<link href="ico/apple-touch-icon-114-precomposed.png" rel=
+		"apple-touch-icon-precomposed" sizes="114x114">
+		<link href="ico/apple-touch-icon-72-precomposed.png" rel=
+		"apple-touch-icon-precomposed" sizes="72x72">
+		<link href="ico/apple-touch-icon-57-precomposed.png" rel=
+		"apple-touch-icon-precomposed">
+		<link href="ico/favicon.png" rel="shortcut icon">
+		<!-- end: Favicon and Touch Icons -->
+		<%= include_gon %>
+		<![if !IE]>
+		<%= stylesheet_link_tag    "application", media: "all", "data-turbolnks-track" => true %>
+		<![endif]>
+		<%= stylesheet_link_tag "retina" %>
+		<%= csrf_meta_tags %>
+		<%= javascript_include_tag :application, controller_name %>
+	</head>
+	<body>
 		<!-- start: Header -->
+		<div class="workspace">
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						<a class="brand" href="<%= root_path %>">
+							<span>PaperTrade . SG</span>
+						</a> <!-- start: Header Menu -->
+						<div class="nav-no-collapse header-nav">
+							<ul class="nav pull-right">
+								<!-- start: User Dropdown -->
 
-		<div class="container-fluid">
-			<div class="row-fluid">
+								<li class="dropdown">
+									<a class="btn dropdown-toggle" data-toggle=
+									"dropdown" href="#"><em class=
+									"halflings-icon white user"></em> <% if @user %>
+									<%= @user.name %> <% else %>
+									<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+									<% end %> <span class="caret"></span></a>
 
-				<!-- start: Main Menu -->
-				<div id="sidebar-left" class="span1">
-					<div class="nav-collapse sidebar-nav">
-						<ul class="nav nav-tabs nav-stacked main-menu">
-							<li><a href=<%= root_path %>><i class="fa-icon-bar-chart"></i><span class="hidden-tablet"> Home</span></a></li>	
-							<li><a href=<%= orders_path %>><i class="fa-icon-hdd"></i><span class="hidden-tablet"> Portfolio</span></a></li>
-							<li><a href=<%=stocks_path %>><i class="fa-icon-envelope"></i><span class="hidden-tablet"> Stocks</span></a></li>
-							<li><a href="tasks.html"><i class="fa-icon-tasks"></i><span class="hidden-tablet"> Message</span></a></li>
-						</ul>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#"><em class=
+											"halflings-icon white user"></em>
+											Profile</a>
+										</li><% if session[:user_id] %><%= link_to "<i class='halflings-icon white off'></i> Logout ".html_safe, signout_path, id: "sign_out" %><!-- 
+										 <li><%= link_to "<i class='halflings-icon white off'></i> Logout ".html_safe,signout_path, method: :delete %> </li>  -->
+										<% end %>
+									</ul>
+								</li><!-- end: User Dropdown -->
+							</ul>
+						</div><!-- end: Header Menu -->
 					</div>
 				</div>
-				<!-- end: Main Menu -->
+			</div><!-- start: Header -->
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<!-- start: Main Menu -->
 
-				<noscript>
+					<div class="span1" id="sidebar-left">
+						<div class="nav-collapse sidebar-nav">
+							<ul class="nav nav-tabs nav-stacked main-menu">
+								<li>
+									<a href="<%=root_path%>"><em class=
+									"fa-icon-bar-chart"></em> <span class=
+									"hidden-tablet">Home</span></a>
+								</li>
+
+								<li>
+									<a href="<%=orders_path%>"><em class=
+									"fa-icon-hdd"></em> <span class=
+									"hidden-tablet">Portfolio</span></a>
+								</li>
+
+								<li>
+									<a href="<%=stocks_path%>"><em class=
+									"fa-icon-envelope"></em> <span class=
+									"hidden-tablet">Stocks</span></a>
+								</li>
+
+								<li>
+									<a href="tasks.html"><em class=
+									"fa-icon-tasks"></em> <span class=
+									"hidden-tablet">Message</span></a>
+								</li>
+							</ul>
+						</div>
+					</div><!-- end: Main Menu -->
+					<noscript>
 					<div class="alert alert-block span11">
 						<h4 class="alert-heading">Warning!</h4>
-						<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
-					</div>
-				</noscript>
 
-				<!-- start: Content -->
-				<div id="content" class="span11">
+						<p>You need to have <a href=
+						"http://en.wikipedia.org/wiki/JavaScript" target=
+						"_blank">JavaScript</a> enabled to use this site.</p>
+					</div></noscript> <!-- start: Content -->
 
-					<%= yield %>
-				</div>
-				<!-- end: Content -->
-			</div><!--/fluid-row-->
+					<div class="span11 stocks-main" id="content">
+						<%= yield %>
+					</div><!-- end: Content -->
+				</div><!--/fluid-row-->
 
-			<div class="clearfix"></div>
-
-			<footer>
-				<p>
-					<span class="hidden-phone" style="text-align:right;float:right">2013 PaperTrade.sg</a></span>
-				</p>
-			</footer>
-
-		</div><!--/.fluid-container-->
-
+				<div class="clearfix"></div>
+			</div><!--/.fluid-container-->
+		</div>
 	</body>
-	</html>
+	<footer>
+		<div class="container-fluid text-center">
+			<p class="ptop-15">Vestibulum libero enim, ultricies eget pharetra eget, semper in est. Vestibulum ac lobortis nulla, ac rutrum erat. Aliquam non ultrices dui, sed adipiscing tellus
+			<br/>Aliquam non ultrices dui, sed adipiscing tellus. </p>
+			<h4 class="ptop-5">2013 PaperTrade.sg</h4>
+		</div>
+	</footer>
+</html>
