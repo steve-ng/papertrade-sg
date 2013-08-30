@@ -28,10 +28,8 @@
 		<%= csrf_meta_tags %>
 		<%= javascript_include_tag :application, controller_name %>
 	</head>
-	<body>
-		<!-- start: Header -->
-		<div class="workspace">
-			<div class="navbar">
+	<header>
+	<div class="navbar">
 				<div class="navbar-inner">
 					<div class="container-fluid">
 						<a class="brand" href="<%= root_path %>">
@@ -44,18 +42,28 @@
 								<li class="dropdown">
 									<a class="btn dropdown-toggle" data-toggle=
 									"dropdown" href="#"><em class=
-									"halflings-icon white user"></em> <% if @user %>
-									<%= @user.name %> <% else %>
-									<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-									<% end %> <span class="caret"></span></a>
-
+									"halflings-icon white user"></em> 
+									<% 
+									if @user 
+										concat @user.name;
+									else 
+										concat link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" 
+									end %> 
+									<span class="caret"></span></a>
 									<ul class="dropdown-menu">
 										<li>
-											<a href="#"><em class=
-											"halflings-icon white user"></em>
-											Profile</a>
-										</li><% if session[:user_id] %><%= link_to "<i class='halflings-icon white off'></i> Logout ".html_safe, signout_path, id: "sign_out" %><!-- 
-										 <li><%= link_to "<i class='halflings-icon white off'></i> Logout ".html_safe,signout_path, method: :delete %> </li>  -->
+											<a href="#">
+												<em class="halflings-icon white user mtop-3"></em>
+												Profile
+											</a>
+										</li>
+										<% if session[:user_id] %>
+										<li>
+											<a href="<%=signout_path%>">
+												<em class="halflings-icon white off mtop-3"></em>
+												Logoff
+											</a>
+										</li>
 										<% end %>
 									</ul>
 								</li><!-- end: User Dropdown -->
@@ -64,6 +72,11 @@
 					</div>
 				</div>
 			</div><!-- start: Header -->
+	</header>
+	<body>
+		<!-- start: Header -->
+		<div class="workspace">
+			
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<!-- start: Main Menu -->
@@ -72,26 +85,32 @@
 						<div class="nav-collapse sidebar-nav">
 							<ul class="nav nav-tabs nav-stacked main-menu">
 								<li>
-									<a href="<%=root_path%>"><em class=
-									"fa-icon-bar-chart"></em> <span class=
+									<a href="<%=root_path%>"><i class=
+									"fa-icon-home"></i> <span class=
 									"hidden-tablet">Home</span></a>
 								</li>
 
 								<li>
-									<a href="<%=orders_path%>"><em class=
-									"fa-icon-hdd"></em> <span class=
+									<a href="<%=orders_path%>"><i class=
+									"fa-icon-credit-card"></i> <span class=
 									"hidden-tablet">Portfolio</span></a>
 								</li>
 
 								<li>
-									<a href="<%=stocks_path%>"><em class=
-									"fa-icon-envelope"></em> <span class=
+									<a href="<%=stocks_path%>"><i class=
+									"fa-icon-rss"></i> <span class=
 									"hidden-tablet">Stocks</span></a>
 								</li>
 
 								<li>
-									<a href="tasks.html"><em class=
-									"fa-icon-tasks"></em> <span class=
+									<a href="tasks.html"><i class=
+									"fa-icon-bar-chart"></i> <span class=
+									"hidden-tablet">Message</span></a>
+								</li>
+								
+								<li>
+									<a href="tasks.html"><i class=
+									 "fa-icon-envelope"></i> <span class=
 									"hidden-tablet">Message</span></a>
 								</li>
 							</ul>

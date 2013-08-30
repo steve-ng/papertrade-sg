@@ -14,8 +14,13 @@ html, body {
 	height:100%;
 }
 
+header {
+	min-height:60px;
+	height:15% !important;
+}
+
 .workspace {
-	min-height:85%;
+	min-height:70%;
 }
 
 footer {
@@ -23,11 +28,9 @@ footer {
 }
 
 .stocks-main {
-	min-height:300px !important;
+	min-height:375px !important;
 	margin-bottom:20px;
 }
-
-
 
 /*
 	Font color
@@ -227,4 +230,20 @@ footer {
 }
 .pbottom-60 {
 	padding-bottom:60px;
+}
+
+/*
+	Margins
+*/
+
+.mtop-1 {
+	margin-top:1px;
+}
+
+.mtop-2 {
+	margin-top:2px;
+}
+
+.mtop-3 {
+	margin-top:3px;
 }

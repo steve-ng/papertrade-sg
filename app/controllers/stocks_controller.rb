@@ -111,4 +111,5 @@ class StocksController < ApplicationController
     def stock_params
       params.require(:stock).permit(:counter_name, :price)
     end
+	
   end
